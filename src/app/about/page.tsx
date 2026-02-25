@@ -29,7 +29,7 @@ const values = [
   {
     icon: Shield,
     title: "Security first",
-    body: "Enterprise-grade from day one. SOC 2 Type II isn't a checkbox — it's how we operate.",
+    body: "Enterprise-grade from day one. SOC 2 Type II isn't a checkbox. It's how we operate.",
   },
   {
     icon: Users,
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   </p>
                   <p style={{ fontSize: "1rem", color: "#8899bb", lineHeight: 1.8 }}>
                     Vantage changes that. We centralize signal, automate the reporting layer, and surface
-                    anomalies before they become incidents — so your team spends time acting, not assembling.
+                    anomalies before they become incidents, so your team spends time acting, not assembling.
                   </p>
                 </motion.div>
                 <motion.div {...FADE(0.15)}>
@@ -201,7 +201,7 @@ export default function AboutPage() {
                 Ready to see it in action?
               </h2>
               <p style={{ fontSize: "1rem", color: "#8899bb", marginBottom: "2rem", position: "relative" }}>
-                Explore the live dashboard demo or reach out — we&apos;d love to show you around.
+                Explore the live dashboard demo or reach out. We&apos;d love to show you around.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center", position: "relative" }}>
                 <Link href="/dashboard" className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.8rem 1.75rem", borderRadius: "0.75rem", background: "#4f46e5", color: "white", fontWeight: 600, fontSize: "0.9375rem", textDecoration: "none", boxShadow: "0 8px 32px rgba(79,70,229,0.45)" }}>

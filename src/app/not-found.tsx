@@ -83,7 +83,7 @@ export default function NotFound() {
           marginBottom: "2.5rem",
         }}>
           <p style={{ fontSize: "0.9375rem", color: "#8899bb", lineHeight: 1.75 }}>
-            This is a personal project — most of the nav links are stubs that don&apos;t go anywhere yet.
+            This is a personal project. Most of the nav links are stubs that don&apos;t go anywhere yet.
             The <Link href="/" style={{ color: "#818cf8", textDecoration: "none" }}>homepage</Link> and{" "}
             <Link href="/dashboard" style={{ color: "#818cf8", textDecoration: "none" }}>dashboard</Link> are the actual work.
           </p>

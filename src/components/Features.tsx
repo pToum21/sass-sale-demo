@@ -25,7 +25,7 @@ const features = [
     icon: Zap,
     title: "Automated Reporting",
     description:
-      "Schedule and deliver beautiful reports to any audience. Eliminate manual exports — Vantage handles formatting, delivery, and archiving automatically.",
+      "Schedule and deliver beautiful reports to any audience. Eliminate manual exports. Vantage handles formatting, delivery, and archiving automatically.",
     color: "#fbbf24",
     iconBg: "rgba(251,191,36,0.1)",
   },
@@ -49,7 +49,7 @@ const features = [
     icon: Bell,
     title: "Intelligent Alerts",
     description:
-      "AI-powered anomaly detection flags issues before they escalate. Route alerts by severity, team, or policy — delivered to Slack, email, or PagerDuty.",
+      "AI-powered anomaly detection flags issues before they escalate. Route alerts by severity, team, or policy, delivered to Slack, email, or PagerDuty.",
     color: "#22d3ee",
     iconBg: "rgba(34,211,238,0.1)",
   },
@@ -101,7 +101,7 @@ export default function Features() {
             <span className="gradient-text">Nothing you don&apos;t.</span>
           </h2>
           <p style={{ marginTop: "1rem", color: "#8899bb", fontSize: "1rem", lineHeight: 1.7 }}>
-            Vantage is built to replace five tools with one — without the
+            Vantage is built to replace five tools with one, without the
             complexity that usually comes with consolidation.
           </p>
         </ScrollReveal>
@@ -164,7 +164,7 @@ export default function Features() {
               </h2>
               <p style={{ color: "#8899bb", marginBottom: "1.5rem", fontSize: "0.9375rem", lineHeight: 1.7 }}>
                 Connect your data sources, configure your dashboards, and invite
-                your team — Vantage handles the rest. No professional services
+                your team. Vantage handles the rest. No professional services
                 engagement required.
               </p>
               <ol style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>

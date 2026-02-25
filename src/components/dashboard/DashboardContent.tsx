@@ -61,7 +61,7 @@ export default function DashboardContent() {
           <div style={{ marginBottom: "1.5rem" }}>
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, color: "white" }}>Overview</h1>
             <p style={{ fontSize: "0.875rem", color: "#4a5a7a", marginTop: "0.125rem" }}>
-              Your operations snapshot — Last 7 days
+              Your operations snapshot · Last 7 days
             </p>
           </div>
 

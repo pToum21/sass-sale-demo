@@ -23,7 +23,7 @@ const showcases = [
     tag: "Intelligent Alerts",
     tagColor: "#f59e0b",
     headline: ["Catch anomalies", "before they escalate."],
-    body: "Vantage's AI models learn your traffic patterns and financial baselines. When something drifts, you know instantly — not after the damage is done.",
+    body: "Vantage's AI models learn your traffic patterns and financial baselines. When something drifts, you know instantly. Not after the damage is done.",
     cta: "See how alerts work",
     screen: "alerts",
     flip: true,
@@ -32,7 +32,7 @@ const showcases = [
     tag: "Automated Reports",
     tagColor: "#10b981",
     headline: ["Reports that", "write themselves."],
-    body: "Schedule polished reports to any inbox, on any cadence. Choose from templates or build custom layouts — Vantage handles delivery and archiving automatically.",
+    body: "Schedule polished reports to any inbox, on any cadence. Choose from templates or build custom layouts. Vantage handles delivery and archiving automatically.",
     cta: "View report builder",
     screen: "reports",
     flip: false,
@@ -321,7 +321,7 @@ function AnalyticsScreen({ accent }: { accent: string }) {
 
 function AlertsScreen({ accent }: { accent: string }) {
   const alerts = [
-    { icon: AlertCircle, color: "#ef4444", bg: "rgba(239,68,68,0.1)", title: "API Latency Spike", desc: "/v2/reports — p99 exceeded 2.1s threshold", sev: "P1", time: "2 min", isNew: true },
+    { icon: AlertCircle, color: "#ef4444", bg: "rgba(239,68,68,0.1)", title: "API Latency Spike", desc: "/v2/reports: p99 exceeded 2.1s threshold", sev: "P1", time: "2 min", isNew: true },
     { icon: TrendingDown, color: "#f59e0b", bg: "rgba(245,158,11,0.1)", title: "Conversion Rate Drop", desc: "Funnel step 3 dropped 18% in the last hour", sev: "P2", time: "14 min", isNew: true },
     { icon: CheckCircle2, color: "#10b981", bg: "rgba(16,185,129,0.1)", title: "Revenue Target Hit", desc: "Monthly goal of $2.4M reached ahead of schedule", sev: "INFO", time: "1 hr", isNew: false },
     { icon: Bell, color: "#a78bfa", bg: "rgba(167,139,250,0.1)", title: "Report Delivered", desc: "Weekly executive digest sent to 12 recipients", sev: "INFO", time: "2 hr", isNew: false },

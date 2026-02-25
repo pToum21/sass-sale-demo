@@ -90,7 +90,7 @@ export default function Hero() {
 
           <motion.p {...FADE(0.2)} style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)", color: "#8899bb", lineHeight: 1.75, maxWidth: "38rem", margin: "0 auto 2.5rem" }}>
             Vantage centralizes your team&apos;s performance data, automates reporting,
-            and surfaces insights before they become problems — all within a secure,
+            and surfaces insights before they become problems, all within a secure,
             enterprise-grade platform.
           </motion.p>
 

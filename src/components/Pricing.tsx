@@ -204,7 +204,7 @@ export default function Pricing() {
                 {plan.monthlyPrice && (
                   <p style={{ fontSize: "0.75rem", color: "#4a5a7a", marginTop: "0.25rem" }}>
                     {annual
-                      ? `Billed annually — $${(plan.yearlyPrice! * 12).toLocaleString()}/yr`
+                      ? `Billed annually · $${(plan.yearlyPrice! * 12).toLocaleString()}/yr`
                       : "Billed monthly"}
                   </p>
                 )}

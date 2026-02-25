@@ -17,7 +17,7 @@ const activities = [
     iconColor: "#f59e0b",
     iconBg: "rgba(245,158,11,0.1)",
     title: "Anomaly detected",
-    description: "API latency spike on /v2/reports endpoint — P2",
+    description: "API latency spike on /v2/reports endpoint (P2)",
     time: "14 min ago",
   },
   {
@@ -33,7 +33,7 @@ const activities = [
     iconColor: "#10b981",
     iconBg: "rgba(16,185,129,0.1)",
     title: "Incident resolved",
-    description: "INC-0481: Database failover — resolved in 4m 12s",
+    description: "INC-0481: Database failover, resolved in 4m 12s",
     time: "3 hrs ago",
   },
   {
@@ -49,7 +49,7 @@ const activities = [
     iconColor: "#8899bb",
     iconBg: "rgba(255,255,255,0.05)",
     title: "Scheduled maintenance",
-    description: "Database compaction window — 02:00–03:00 UTC",
+    description: "Database compaction window: 02:00–03:00 UTC",
     time: "Yesterday",
   },
 ];
