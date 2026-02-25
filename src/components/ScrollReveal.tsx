@@ -10,7 +10,7 @@ interface ScrollRevealProps {
   animation?: AnimationType;
   className?: string;
   style?: React.CSSProperties;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
@@ -91,7 +91,7 @@ export function StaggerReveal({
   stagger?: number;
   className?: string;
   style?: React.CSSProperties;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }) {
   const ref = useRef<HTMLElement>(null);
 
