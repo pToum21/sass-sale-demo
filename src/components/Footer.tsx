@@ -101,7 +101,7 @@ export default function Footer() {
           <p style={{ fontSize: "0.7rem", color: "#2a3a5a" }}>
             Made by{" "}
             <a
-              href="https://github.com/peytontouma"
+              href="https://peyton-touma.com"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#4a5a7a", textDecoration: "none" }}
