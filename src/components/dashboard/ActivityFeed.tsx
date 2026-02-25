@@ -2,62 +2,55 @@
 
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Info, UserPlus, TrendingUp, Zap } from "lucide-react";
-import clsx from "clsx";
 
 const activities = [
   {
     icon: TrendingUp,
-    color: "text-green-400",
-    bg: "bg-green-400/10",
+    iconColor: "#10b981",
+    iconBg: "rgba(16,185,129,0.1)",
     title: "Revenue milestone reached",
     description: "MRR crossed $2.4M for the first time",
     time: "2 min ago",
-    type: "success",
   },
   {
     icon: AlertCircle,
-    color: "text-amber-400",
-    bg: "bg-amber-400/10",
+    iconColor: "#f59e0b",
+    iconBg: "rgba(245,158,11,0.1)",
     title: "Anomaly detected",
     description: "API latency spike on /v2/reports endpoint — P2",
     time: "14 min ago",
-    type: "warning",
   },
   {
     icon: UserPlus,
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
+    iconColor: "#818cf8",
+    iconBg: "rgba(99,102,241,0.12)",
     title: "New enterprise signup",
     description: "Meridian Corp upgraded to Enterprise plan",
     time: "1 hr ago",
-    type: "info",
   },
   {
     icon: CheckCircle2,
-    color: "text-green-400",
-    bg: "bg-green-400/10",
+    iconColor: "#10b981",
+    iconBg: "rgba(16,185,129,0.1)",
     title: "Incident resolved",
     description: "INC-0481: Database failover — resolved in 4m 12s",
     time: "3 hrs ago",
-    type: "success",
   },
   {
     icon: Zap,
-    color: "text-violet-400",
-    bg: "bg-violet-400/10",
+    iconColor: "#a78bfa",
+    iconBg: "rgba(167,139,250,0.1)",
     title: "Integration deployed",
     description: "Salesforce connector updated to v3.2",
     time: "6 hrs ago",
-    type: "info",
   },
   {
     icon: Info,
-    color: "text-[#8899bb]",
-    bg: "bg-white/[0.05]",
+    iconColor: "#8899bb",
+    iconBg: "rgba(255,255,255,0.05)",
     title: "Scheduled maintenance",
     description: "Database compaction window — 02:00–03:00 UTC",
     time: "Yesterday",
-    type: "neutral",
   },
 ];
 
@@ -67,45 +60,37 @@ export default function ActivityFeed() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35, duration: 0.4 }}
-      className="bg-[#0d1526] border border-white/[0.06] rounded-2xl p-5"
+      style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", borderRadius: "1rem", padding: "1.25rem" }}
     >
-      <div className="flex items-center justify-between mb-5">
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
         <div>
-          <h2 className="text-sm font-semibold text-white">Activity Feed</h2>
-          <p className="text-xs text-[#4a5a7a] mt-0.5">
-            Recent events and alerts
-          </p>
+          <h2 style={{ fontSize: "0.875rem", fontWeight: 600, color: "white" }}>Activity Feed</h2>
+          <p style={{ fontSize: "0.75rem", color: "#4a5a7a", marginTop: "0.125rem" }}>Recent events and alerts</p>
         </div>
-        <button className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+        <button style={{ fontSize: "0.75rem", color: "#818cf8", background: "transparent", border: "none", cursor: "pointer" }}>
           View all
         </button>
       </div>
 
-      <ol className="space-y-1" aria-label="Recent activity">
+      <ol style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "2px" }} aria-label="Recent activity">
         {activities.map((item, i) => (
           <motion.li
             key={item.title}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 + i * 0.05, duration: 0.3 }}
-            className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/[0.03] transition-colors cursor-default"
+            style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "0.625rem 0.5rem", borderRadius: "0.75rem", cursor: "default" }}
           >
-            <div className={clsx("p-1.5 rounded-lg flex-shrink-0 mt-0.5", item.bg)}>
-              <item.icon
-                className={clsx("w-3.5 h-3.5", item.color)}
-                strokeWidth={1.8}
-              />
+            <div style={{ padding: "0.375rem", borderRadius: "0.5rem", background: item.iconBg, flexShrink: 0, marginTop: "0.1rem", display: "flex" }}>
+              <item.icon style={{ width: "0.875rem", height: "0.875rem", color: item.iconColor }} strokeWidth={1.8} />
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white">{item.title}</p>
-              <p className="text-xs text-[#4a5a7a] truncate mt-0.5">
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ fontSize: "0.8125rem", fontWeight: 500, color: "white" }}>{item.title}</p>
+              <p style={{ fontSize: "0.75rem", color: "#4a5a7a", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: "0.125rem" }}>
                 {item.description}
               </p>
             </div>
-            <time
-              className="text-xs text-[#2a3a5a] flex-shrink-0 mt-0.5"
-              dateTime={item.time}
-            >
+            <time style={{ fontSize: "0.7rem", color: "#2a3a5a", flexShrink: 0, marginTop: "0.125rem" }} dateTime={item.time}>
               {item.time}
             </time>
           </motion.li>

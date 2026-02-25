@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   BarChart3,
   Zap,
@@ -11,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import ScrollReveal, { StaggerReveal } from "@/components/ScrollReveal";
 
 const features = [
   {
@@ -18,8 +18,8 @@ const features = [
     title: "Real-Time Analytics",
     description:
       "Live dashboards update the moment data changes. Drill into any metric with one click and build custom views for every stakeholder.",
-    color: "#60a5fa",
-    iconBg: "rgba(59,130,246,0.1)",
+    color: "#818cf8",
+    iconBg: "rgba(99,102,241,0.12)",
   },
   {
     icon: Zap,
@@ -63,15 +63,6 @@ const features = [
   },
 ];
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const card = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
 
 export default function Features() {
   return (
@@ -98,14 +89,8 @@ export default function Features() {
 
       <div className="section-outer">
         {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
-        >
-          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
+        <ScrollReveal animation="fadeUp" className="section-header">
+          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
             Platform Features
           </p>
           <h2
@@ -119,29 +104,21 @@ export default function Features() {
             Vantage is built to replace five tools with one — without the
             complexity that usually comes with consolidation.
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Feature grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="card-grid"
-        >
+        <StaggerReveal className="card-grid" stagger={0.07}>
           {features.map((f) => (
-            <motion.article
+            <article
               key={f.title}
-              variants={card}
+              className="card-interactive"
               style={{
                 padding: "1.5rem",
                 borderRadius: "1rem",
                 background: "var(--bg-surface)",
                 border: "1px solid var(--border)",
                 cursor: "default",
-                transition: "border-color 0.2s, transform 0.2s",
               }}
-              whileHover={{ y: -4, borderColor: "rgba(255,255,255,0.14)" }}
             >
               <div
                 style={{
@@ -160,17 +137,14 @@ export default function Features() {
               <p style={{ fontSize: "0.875rem", color: "#8899bb", lineHeight: 1.65 }}>
                 {f.description}
               </p>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </StaggerReveal>
 
         {/* How it works */}
-        <motion.div
+        <ScrollReveal
           id="how-it-works"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5 }}
+          animation="scaleUp"
           style={{
             marginTop: "5rem",
             borderRadius: "1.25rem",
@@ -178,6 +152,7 @@ export default function Features() {
             border: "1px solid var(--border)",
             padding: "2.5rem",
           }}
+          as="div"
         >
           <div className="how-it-works-grid">
             <div>
@@ -205,9 +180,9 @@ export default function Features() {
                       width: "1.5rem",
                       height: "1.5rem",
                       borderRadius: "9999px",
-                      background: "rgba(59,130,246,0.15)",
-                      border: "1px solid rgba(96,165,250,0.3)",
-                      color: "#60a5fa",
+                      background: "rgba(99,102,241,0.15)",
+                      border: "1px solid rgba(129,140,248,0.3)",
+                      color: "#818cf8",
                       fontSize: "0.7rem",
                       fontWeight: 700,
                       display: "flex",
@@ -230,7 +205,7 @@ export default function Features() {
                   marginTop: "2rem",
                   fontSize: "0.875rem",
                   fontWeight: 500,
-                  color: "#60a5fa",
+                  color: "#818cf8",
                   textDecoration: "none",
                 }}
               >
@@ -261,7 +236,7 @@ export default function Features() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

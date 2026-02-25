@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const testimonials = [
   {
@@ -11,7 +12,7 @@ const testimonials = [
     title: "VP of Operations",
     company: "Meridian Corp",
     avatar: "SC",
-    avatarBg: "#2563eb",
+    avatarBg: "#4f46e5",
   },
   {
     quote:
@@ -73,14 +74,8 @@ export default function Testimonials() {
       />
 
       <div className="section-outer">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
-        >
-          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
+        <ScrollReveal animation="fadeUp" className="section-header">
+          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
             Customer Stories
           </p>
           <h2
@@ -90,7 +85,7 @@ export default function Testimonials() {
             Loved by teams that{" "}
             <span className="gradient-text">can&apos;t afford to guess.</span>
           </h2>
-        </motion.div>
+        </ScrollReveal>
 
         <div style={{ columns: "1", columnGap: "1.25rem" }} className="testimonial-masonry">
           {testimonials.map((t, i) => (

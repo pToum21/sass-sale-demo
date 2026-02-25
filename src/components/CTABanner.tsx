@@ -1,69 +1,78 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function CTABanner() {
   return (
-    <section
-      className="page-section"
-      aria-labelledby="cta-heading"
-    >
+    <section className="page-section" aria-labelledby="cta-heading">
       <div className="section-outer">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-900/40 via-[#0d1526] to-violet-900/30 border border-white/10 p-10 sm:p-14 lg:p-16 text-center"
-        >
-          {/* Background decoration */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/15 rounded-full blur-[80px]" />
-            <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-violet-600/10 rounded-full blur-[60px]" />
-          </div>
-
-          <div className="relative">
-            <p className="text-xs font-medium text-blue-400 uppercase tracking-widest mb-4">
-              Get Started Today
-            </p>
-            <h2
-              id="cta-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
-            >
-              See what Vantage can do
-              <br />
-              <span className="gradient-text">for your team.</span>
-            </h2>
-            <p className="text-[#8899bb] text-lg max-w-xl mx-auto mb-10">
-              Start your free 14-day trial. No credit card required. Full
-              access to all Growth features from day one.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/dashboard"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all duration-200 shadow-2xl shadow-blue-900/50 hover:shadow-blue-700/60 hover:-translate-y-0.5"
-              >
-                Start free trial
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <Link
-                href="#pricing"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium text-white/80 hover:text-white bg-white/[0.07] hover:bg-white/[0.12] border border-white/10 rounded-xl transition-all duration-200"
-              >
-                View pricing
-              </Link>
+        <ScrollReveal animation="scaleUp">
+          <div style={{
+            position: "relative",
+            borderRadius: "1.5rem",
+            overflow: "hidden",
+            background: "linear-gradient(135deg, rgba(49,46,129,0.35) 0%, #0b1120 50%, rgba(88,28,135,0.25) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            padding: "4rem 3rem",
+            textAlign: "center",
+          }}>
+            {/* Glow orbs */}
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "600px", height: "300px", background: "rgba(99,102,241,0.13)", borderRadius: "50%", filter: "blur(80px)" }} />
+              <div style={{ position: "absolute", top: "25%", right: "25%", width: "200px", height: "200px", background: "rgba(16,217,168,0.06)", borderRadius: "50%", filter: "blur(60px)" }} />
             </div>
-            <p className="mt-5 text-xs text-[#4a5a7a]">
-              14-day free trial &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel
-              anytime
-            </p>
+
+            <div style={{ position: "relative" }}>
+              <p style={{ fontSize: "0.7rem", fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "1rem" }}>
+                Get Started Today
+              </p>
+              <h2
+                id="cta-heading"
+                style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 800, letterSpacing: "-0.035em", color: "white", lineHeight: 1.15, marginBottom: "1rem" }}
+              >
+                See what Vantage can do
+                <br />
+                <span className="gradient-text">for your team.</span>
+              </h2>
+              <p style={{ color: "#8899bb", fontSize: "1.0625rem", maxWidth: "34rem", margin: "0 auto 2.5rem", lineHeight: 1.75 }}>
+                Start your free 14-day trial. No credit card required. Full access to all Growth features from day one.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center" }}>
+                <Link
+                  href="/dashboard"
+                  className="btn-primary"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                    padding: "0.875rem 2rem", fontSize: "0.9375rem", fontWeight: 700,
+                    color: "white", background: "#4f46e5", borderRadius: "0.75rem",
+                    textDecoration: "none", boxShadow: "0 8px 40px rgba(79,70,229,0.5)",
+                  }}
+                >
+                  Start free trial
+                  <ArrowRight style={{ width: "1rem", height: "1rem" }} />
+                </Link>
+                <Link
+                  href="#pricing"
+                  className="btn-secondary"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                    padding: "0.875rem 2rem", fontSize: "0.9375rem", fontWeight: 500,
+                    color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(255,255,255,0.1)", borderRadius: "0.75rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  View pricing
+                </Link>
+              </div>
+              <p style={{ marginTop: "1.25rem", fontSize: "0.75rem", color: "#4a5a7a" }}>
+                14-day free trial &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime
+              </p>
+            </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

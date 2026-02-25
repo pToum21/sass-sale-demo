@@ -55,18 +55,15 @@ function CustomTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#111e35] border border-white/10 rounded-xl p-3 shadow-2xl text-xs">
-      <p className="text-[#8899bb] font-medium mb-2">{label}</p>
+    <div style={{ background: "#111e35", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "0.75rem", padding: "0.75rem", boxShadow: "0 20px 60px rgba(0,0,0,0.5)", fontSize: "0.75rem" }}>
+      <p style={{ color: "#8899bb", fontWeight: 500, marginBottom: "0.5rem" }}>{label}</p>
       {payload.map((p) => (
-        <div key={p.name} className="flex items-center justify-between gap-4 mb-1">
-          <div className="flex items-center gap-1.5">
-            <span
-              className="w-2 h-2 rounded-full"
-              style={{ background: p.color }}
-            />
-            <span className="text-[#8899bb]">{p.name}</span>
+        <div key={p.name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginBottom: "0.25rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: p.color, display: "inline-block" }} />
+            <span style={{ color: "#8899bb" }}>{p.name}</span>
           </div>
-          <span className="font-semibold text-white">{formatCurrency(p.value)}</span>
+          <span style={{ fontWeight: 600, color: "white" }}>{formatCurrency(p.value)}</span>
         </div>
       ))}
     </div>
@@ -82,17 +79,17 @@ export default function RevenueChart() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.4 }}
-      className="bg-[#0d1526] border border-white/[0.06] rounded-2xl p-5"
+      style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", borderRadius: "1rem", padding: "1.25rem" }}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "0.75rem", marginBottom: "1.5rem" }}>
         <div>
-          <h2 className="text-sm font-semibold text-white">Revenue Overview</h2>
-          <p className="text-xs text-[#4a5a7a] mt-0.5">
+          <h2 style={{ fontSize: "0.875rem", fontWeight: 600, color: "white" }}>Revenue Overview</h2>
+          <p style={{ fontSize: "0.75rem", color: "#4a5a7a", marginTop: "0.125rem" }}>
             MRR, new ARR, and churn over time
           </p>
         </div>
         <div
-          className="flex items-center gap-1 bg-[#111e35] border border-white/[0.06] rounded-lg p-1"
+          style={{ display: "flex", alignItems: "center", gap: "2px", background: "#111e35", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "0.5rem", padding: "0.25rem" }}
           role="group"
           aria-label="Date range"
         >
@@ -100,11 +97,17 @@ export default function RevenueChart() {
             <button
               key={r}
               onClick={() => setRange(r)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                range === r
-                  ? "bg-blue-600 text-white"
-                  : "text-[#4a5a7a] hover:text-white"
-              }`}
+              style={{
+                padding: "0.375rem 0.75rem",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                borderRadius: "0.375rem",
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.15s, color 0.15s",
+                background: range === r ? "#4f46e5" : "transparent",
+                color: range === r ? "white" : "#4a5a7a",
+              }}
               aria-pressed={range === r}
             >
               {r}
@@ -118,8 +121,8 @@ export default function RevenueChart() {
           <AreaChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="gradMRR" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="gradNewARR" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.3} />
@@ -157,11 +160,11 @@ export default function RevenueChart() {
             <Area
               type="monotone"
               dataKey="MRR"
-              stroke="#3b82f6"
+              stroke="#6366f1"
               strokeWidth={2}
               fill="url(#gradMRR)"
               dot={false}
-              activeDot={{ r: 4, fill: "#3b82f6" }}
+              activeDot={{ r: 4, fill: "#6366f1" }}
             />
             <Area
               type="monotone"

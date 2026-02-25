@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Check, Zap } from "lucide-react";
 import Link from "next/link";
+import ScrollReveal, { StaggerReveal } from "@/components/ScrollReveal";
 
 const plans = [
   {
@@ -81,14 +81,8 @@ export default function Pricing() {
 
       <div className="section-outer">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
-        >
-          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
+        <ScrollReveal animation="fadeUp" className="section-header">
+          <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>
             Pricing
           </p>
           <h2
@@ -144,28 +138,24 @@ export default function Pricing() {
               </span>
             </button>
           </div>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem", alignItems: "stretch" }}>
+        <StaggerReveal style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem", alignItems: "stretch" }} stagger={0.1}>
           {plans.map((plan, i) => (
-            <motion.div
+            <div
               key={plan.name}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
               style={{
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
                 borderRadius: "1rem",
                 padding: "2rem",
-                border: plan.featured ? "1px solid rgba(59,130,246,0.4)" : "1px solid var(--border)",
+                border: plan.featured ? "1px solid rgba(99,102,241,0.45)" : "1px solid var(--border)",
                 background: plan.featured
-                  ? "linear-gradient(to bottom, rgba(37,99,235,0.18), var(--bg-surface))"
+                  ? "linear-gradient(to bottom, rgba(79,70,229,0.18), var(--bg-surface))"
                   : "var(--bg-surface)",
-                boxShadow: plan.featured ? "0 20px 60px rgba(30,58,138,0.25)" : "none",
+                boxShadow: plan.featured ? "0 20px 60px rgba(49,46,129,0.3)" : "none",
                 transform: plan.featured ? "scale(1.02)" : "none",
                 transition: "border-color 0.2s",
               }}
@@ -181,7 +171,7 @@ export default function Pricing() {
                   gap: "0.375rem",
                   padding: "0.25rem 0.75rem",
                   borderRadius: "9999px",
-                  background: "#2563eb",
+                  background: "#4f46e5",
                   fontSize: "0.7rem",
                   fontWeight: 600,
                   color: "white",
@@ -221,6 +211,7 @@ export default function Pricing() {
 
               <Link
                 href={plan.href}
+                className={plan.featured ? "btn-primary" : "btn-secondary"}
                 style={{
                   display: "block",
                   textAlign: "center",
@@ -229,10 +220,10 @@ export default function Pricing() {
                   fontSize: "0.875rem",
                   fontWeight: 600,
                   color: "white",
-                  background: plan.featured ? "#2563eb" : "rgba(255,255,255,0.08)",
+                  background: plan.featured ? "#4f46e5" : "rgba(255,255,255,0.08)",
+                  border: plan.featured ? "none" : "1px solid rgba(255,255,255,0.1)",
                   marginBottom: "2rem",
                   textDecoration: "none",
-                  transition: "background 0.2s",
                 }}
               >
                 {plan.cta}
@@ -242,28 +233,22 @@ export default function Pricing() {
                 {plan.features.map((feature) => (
                   <li key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontSize: "0.875rem" }}>
                     <Check
-                      style={{ width: "1rem", height: "1rem", marginTop: "0.1rem", flexShrink: 0, color: plan.featured ? "#60a5fa" : "#34d399" }}
+                      style={{ width: "1rem", height: "1rem", marginTop: "0.1rem", flexShrink: 0, color: plan.featured ? "#818cf8" : "#10d9a8" }}
                     />
                     <span style={{ color: "#8899bb" }}>{feature}</span>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </StaggerReveal>
 
         {/* Bottom note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center text-xs text-[#4a5a7a] mt-8"
-        >
+        <ScrollReveal animation="fadeIn" as="p" style={{ textAlign: "center", fontSize: "0.75rem", color: "#4a5a7a", marginTop: "2rem" }}>
           All plans include a 14-day free trial. No credit card required.
           Enterprise plans include custom data residency, advanced compliance
           controls, and dedicated infrastructure options.
-        </motion.p>
+        </ScrollReveal>
       </div>
     </section>
   );

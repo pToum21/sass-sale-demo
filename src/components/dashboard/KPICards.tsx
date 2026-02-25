@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, TrendingDown, Users, DollarSign, Activity, AlertTriangle } from "lucide-react";
-import clsx from "clsx";
 
 const kpis = [
   {
@@ -12,8 +11,8 @@ const kpis = [
     deltaLabel: "vs last month",
     up: true,
     icon: DollarSign,
-    iconBg: "bg-green-400/10",
-    iconColor: "text-green-400",
+    iconBg: "rgba(16,185,129,0.1)",
+    iconColor: "#10b981",
     sparkline: [60, 65, 58, 72, 68, 80, 75, 88, 84, 92, 89, 100],
     sparkColor: "#10b981",
   },
@@ -24,10 +23,10 @@ const kpis = [
     deltaLabel: "vs last month",
     up: true,
     icon: Users,
-    iconBg: "bg-blue-400/10",
-    iconColor: "text-blue-400",
+    iconBg: "rgba(99,102,241,0.12)",
+    iconColor: "#6366f1",
     sparkline: [40, 55, 50, 60, 58, 70, 65, 78, 72, 85, 80, 95],
-    sparkColor: "#3b82f6",
+    sparkColor: "#6366f1",
   },
   {
     label: "Avg Response Time",
@@ -37,10 +36,10 @@ const kpis = [
     up: true,
     note: "lower is better",
     icon: Activity,
-    iconBg: "bg-violet-400/10",
-    iconColor: "text-violet-400",
+    iconBg: "rgba(124,58,237,0.1)",
+    iconColor: "#a78bfa",
     sparkline: [90, 80, 85, 70, 75, 65, 60, 55, 58, 50, 48, 45],
-    sparkColor: "#7c3aed",
+    sparkColor: "#a78bfa",
   },
   {
     label: "Open Incidents",
@@ -50,20 +49,14 @@ const kpis = [
     up: true,
     note: "lower is better",
     icon: AlertTriangle,
-    iconBg: "bg-amber-400/10",
-    iconColor: "text-amber-400",
+    iconBg: "rgba(245,158,11,0.1)",
+    iconColor: "#f59e0b",
     sparkline: [12, 10, 8, 11, 9, 7, 8, 6, 5, 4, 4, 3],
     sparkColor: "#f59e0b",
   },
 ];
 
-function Sparkline({
-  data,
-  color,
-}: {
-  data: number[];
-  color: string;
-}) {
+function Sparkline({ data, color }: { data: number[]; color: string }) {
   const max = Math.max(...data);
   const min = Math.min(...data);
   const range = max - min || 1;
@@ -78,79 +71,52 @@ function Sparkline({
     .join(" ");
 
   return (
-    <svg
-      width={w}
-      height={h}
-      viewBox={`0 0 ${w} ${h}`}
-      className="overflow-visible"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity={0.3} />
-          <stop offset="100%" stopColor={color} stopOpacity={0} />
-        </linearGradient>
-      </defs>
-      <polyline
-        points={points}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ overflow: "visible" }} aria-hidden="true">
+      <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 export default function KPICards() {
   return (
-    <div
-      className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4"
-      role="region"
-      aria-label="Key performance indicators"
-    >
+    <div className="kpi-grid" role="region" aria-label="Key performance indicators">
       {kpis.map((kpi, i) => (
         <motion.div
           key={kpi.label}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08, duration: 0.4 }}
-          className="bg-[#0d1526] border border-white/[0.06] hover:border-white/[0.12] rounded-2xl p-5 transition-all duration-200 hover:-translate-y-0.5"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border)",
+            borderRadius: "1rem",
+            padding: "1.25rem",
+            transition: "border-color 0.2s, transform 0.2s",
+          }}
+          whileHover={{ y: -2, borderColor: "rgba(255,255,255,0.14)" }}
         >
-          <div className="flex items-start justify-between mb-3">
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "0.75rem" }}>
             <div>
-              <p className="text-xs text-[#4a5a7a] font-medium">{kpi.label}</p>
-              <p className="text-2xl font-bold text-white mt-1">{kpi.value}</p>
+              <p style={{ fontSize: "0.75rem", color: "#4a5a7a", fontWeight: 500 }}>{kpi.label}</p>
+              <p style={{ fontSize: "1.5rem", fontWeight: 700, color: "white", marginTop: "0.25rem", lineHeight: 1.1 }}>{kpi.value}</p>
             </div>
-            <div className={clsx("p-2 rounded-xl", kpi.iconBg)}>
-              <kpi.icon
-                className={clsx("w-4 h-4", kpi.iconColor)}
-                strokeWidth={1.8}
-              />
+            <div style={{ padding: "0.5rem", borderRadius: "0.75rem", background: kpi.iconBg, flexShrink: 0 }}>
+              <kpi.icon style={{ width: "1rem", height: "1rem", color: kpi.iconColor }} strokeWidth={1.8} />
             </div>
           </div>
-          <div className="flex items-end justify-between">
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
             <div>
-              <div className="flex items-center gap-1.5">
-                {kpi.up ? (
-                  <TrendingUp className="w-3.5 h-3.5 text-green-400" />
-                ) : (
-                  <TrendingDown className="w-3.5 h-3.5 text-red-400" />
-                )}
-                <span
-                  className={clsx(
-                    "text-xs font-semibold",
-                    kpi.up ? "text-green-400" : "text-red-400"
-                  )}
-                >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                {kpi.up
+                  ? <TrendingUp style={{ width: "0.875rem", height: "0.875rem", color: "#10b981" }} />
+                  : <TrendingDown style={{ width: "0.875rem", height: "0.875rem", color: "#ef4444" }} />
+                }
+                <span style={{ fontSize: "0.75rem", fontWeight: 600, color: kpi.up ? "#10b981" : "#ef4444" }}>
                   {kpi.delta}
                 </span>
               </div>
-              <p className="text-xs text-[#4a5a7a] mt-0.5">{kpi.deltaLabel}</p>
-              {kpi.note && (
-                <p className="text-xs text-[#2a3a5a] mt-0.5">{kpi.note}</p>
-              )}
+              <p style={{ fontSize: "0.7rem", color: "#4a5a7a", marginTop: "0.2rem" }}>{kpi.deltaLabel}</p>
+              {kpi.note && <p style={{ fontSize: "0.65rem", color: "#2a3a5a", marginTop: "0.15rem" }}>{kpi.note}</p>}
             </div>
             <Sparkline data={kpi.sparkline} color={kpi.sparkColor} />
           </div>

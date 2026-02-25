@@ -1,90 +1,111 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Bell, HelpCircle, Menu } from "lucide-react";
+import { Search, Bell, HelpCircle } from "lucide-react";
+import MobileNavDrawer from "@/components/dashboard/MobileNavDrawer";
 
-export default function DashboardHeader({
-  onMobileMenuToggle,
-}: {
-  onMobileMenuToggle?: () => void;
-}) {
+const ranges = ["Today", "7D", "30D", "90D"];
+
+export default function DashboardHeader() {
+  const [activeRange, setActiveRange] = useState(1);
   const [searchFocused, setSearchFocused] = useState(false);
 
   return (
-    <header className="h-16 flex items-center justify-between px-4 sm:px-6 border-b border-white/[0.06] bg-[#060b18]/80 backdrop-blur-xl sticky top-0 z-10 flex-shrink-0">
-      {/* Left */}
-      <div className="flex items-center gap-3">
-        <button
-          className="lg:hidden p-2 rounded-lg text-[#4a5a7a] hover:text-white hover:bg-white/[0.06] transition-all"
-          onClick={onMobileMenuToggle}
-          aria-label="Toggle mobile menu"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
+    <header
+      style={{
+        height: "64px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 1.25rem",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        background: "rgba(5,8,15,0.9)",
+        backdropFilter: "blur(20px)",
+        position: "sticky",
+        top: 0,
+        zIndex: 10,
+        flexShrink: 0,
+        gap: "0.75rem",
+      }}
+    >
+      {/* Mobile nav trigger — only visible on mobile */}
+      <MobileNavDrawer />
 
-        {/* Search */}
-        <div
-          className={`relative flex items-center gap-2 transition-all duration-200 ${
-            searchFocused ? "w-72" : "w-48 sm:w-64"
-          }`}
-        >
-          <Search
-            className="absolute left-3 w-3.5 h-3.5 text-[#4a5a7a] pointer-events-none"
-            aria-hidden="true"
-          />
-          <input
-            type="search"
-            placeholder="Search dashboards, reports…"
-            className="w-full bg-[#0d1526] border border-white/[0.06] rounded-xl py-2 pl-9 pr-3 text-sm text-white placeholder-[#4a5a7a] focus:outline-none focus:border-blue-500/50 focus:bg-[#111e35] transition-all"
-            onFocus={() => setSearchFocused(true)}
-            onBlur={() => setSearchFocused(false)}
-            aria-label="Search"
-          />
-          <kbd className="absolute right-3 text-[10px] text-[#4a5a7a] font-mono bg-white/[0.05] px-1.5 py-0.5 rounded hidden sm:block">
-            ⌘K
-          </kbd>
-        </div>
+      {/* Left: search */}
+      <div style={{ position: "relative", flex: 1, maxWidth: searchFocused ? "18rem" : "14rem", transition: "max-width 0.2s", flexShrink: 0 }}>
+        <Search style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)", width: "0.875rem", height: "0.875rem", color: "#4a5a7a", pointerEvents: "none" }} aria-hidden="true" />
+        <input
+          type="search"
+          placeholder="Search dashboards, reports…"
+          style={{
+            width: "100%",
+            background: "#0d1526",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: "0.75rem",
+            padding: "0.5rem 0.75rem 0.5rem 2.25rem",
+            fontSize: "0.8125rem",
+            color: "white",
+            outline: "none",
+            transition: "border-color 0.15s, background 0.15s",
+          }}
+          onFocus={() => setSearchFocused(true)}
+          onBlur={() => setSearchFocused(false)}
+          aria-label="Search"
+        />
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-2">
-        {/* Time range pill */}
-        <div className="hidden sm:flex items-center gap-1 bg-[#0d1526] border border-white/[0.06] rounded-lg p-1">
-          {["Today", "7D", "30D", "90D"].map((t, i) => (
+      <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
+        {/* Time range selector */}
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "2px", background: "#0d1526", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "0.625rem", padding: "0.25rem" }}
+          role="group"
+          aria-label="Date range selector"
+        >
+          {ranges.map((r, i) => (
             <button
-              key={t}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
-                i === 1
-                  ? "bg-blue-600 text-white"
-                  : "text-[#4a5a7a] hover:text-white"
-              }`}
+              key={r}
+              onClick={() => setActiveRange(i)}
+              style={{
+                padding: "0.3rem 0.75rem",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                borderRadius: "0.375rem",
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.15s, color 0.15s",
+                background: activeRange === i ? "#4f46e5" : "transparent",
+                color: activeRange === i ? "white" : "#4a5a7a",
+              }}
+              aria-pressed={activeRange === i}
             >
-              {t}
+              {r}
             </button>
           ))}
         </div>
 
+        {/* Notification bell */}
         <button
-          className="relative p-2 rounded-lg text-[#4a5a7a] hover:text-white hover:bg-white/[0.06] transition-all"
+          className="icon-btn"
+          style={{ position: "relative", padding: "0.5rem", borderRadius: "0.5rem", background: "transparent", border: "none", cursor: "pointer", color: "#4a5a7a", display: "flex", alignItems: "center", justifyContent: "center" }}
           aria-label="Notifications (3 unread)"
         >
-          <Bell className="w-4.5 h-4.5" style={{ width: "18px", height: "18px" }} />
-          <span
-            className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-500"
-            aria-hidden="true"
-          />
+          <Bell style={{ width: "18px", height: "18px" }} />
+          <span style={{ position: "absolute", top: "6px", right: "6px", width: "8px", height: "8px", borderRadius: "50%", background: "#6366f1", border: "2px solid #05080f" }} aria-hidden="true" />
         </button>
 
+        {/* Help */}
         <button
-          className="p-2 rounded-lg text-[#4a5a7a] hover:text-white hover:bg-white/[0.06] transition-all"
+          className="icon-btn"
+          style={{ padding: "0.5rem", borderRadius: "0.5rem", background: "transparent", border: "none", cursor: "pointer", color: "#4a5a7a", display: "flex", alignItems: "center", justifyContent: "center" }}
           aria-label="Help"
         >
-          <HelpCircle className="w-4.5 h-4.5" style={{ width: "18px", height: "18px" }} />
+          <HelpCircle style={{ width: "18px", height: "18px" }} />
         </button>
 
         {/* Avatar */}
         <button
-          className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-xs font-semibold text-white border-2 border-transparent hover:border-blue-500/40 transition-all"
+          style={{ width: "32px", height: "32px", borderRadius: "9999px", background: "linear-gradient(135deg, #4f46e5, #8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem", fontWeight: 700, color: "white", border: "2px solid transparent", cursor: "pointer", flexShrink: 0 }}
           aria-label="Account menu"
           aria-haspopup="true"
         >

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, TrendingUp, Shield, Zap } from "lucide-react";
+import { Parallax } from "@/components/ScrollReveal";
+import VantageLogo from "@/components/VantageLogo";
 
 const FADE = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -27,17 +29,17 @@ export default function Hero() {
         <div style={{
           position: "absolute", top: "-10%", left: "50%", transform: "translateX(-50%)",
           width: "900px", height: "600px",
-          background: "radial-gradient(ellipse, rgba(59,130,246,0.13) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(99,102,241,0.14) 0%, transparent 70%)",
         }} />
         <div style={{
           position: "absolute", top: "20%", left: "10%",
           width: "500px", height: "500px",
-          background: "radial-gradient(ellipse, rgba(124,58,237,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)",
         }} />
         <div style={{
           position: "absolute", top: "30%", right: "5%",
           width: "400px", height: "400px",
-          background: "radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(16,217,168,0.05) 0%, transparent 70%)",
         }} />
         {/* Subtle grid */}
         <div style={{
@@ -49,14 +51,13 @@ export default function Hero() {
 
       <div className="section-outer" style={{ position: "relative" }}>
 
-        {/* ── TEXT BLOCK ────────────────────────────────── */}
         <div style={{ textAlign: "center", maxWidth: "52rem", margin: "0 auto 4rem" }}>
 
           {/* Pill badge */}
-          <motion.div {...FADE(0)} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 1rem", borderRadius: "9999px", background: "rgba(59,130,246,0.1)", border: "1px solid rgba(96,165,250,0.25)", marginBottom: "1.75rem" }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#60a5fa", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: "0.75rem", fontWeight: 500, color: "#60a5fa" }}>Now with AI-powered anomaly detection</span>
-            <ArrowRight style={{ width: "0.75rem", height: "0.75rem", color: "#60a5fa" }} />
+          <motion.div {...FADE(0)} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 1rem", borderRadius: "9999px", background: "rgba(99,102,241,0.1)", border: "1px solid rgba(129,140,248,0.28)", marginBottom: "1.75rem" }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#818cf8", animation: "pulse 2s infinite" }} />
+            <span style={{ fontSize: "0.75rem", fontWeight: 500, color: "#818cf8" }}>Now with AI-powered anomaly detection</span>
+            <ArrowRight style={{ width: "0.75rem", height: "0.75rem", color: "#818cf8" }} />
           </motion.div>
 
           {/* Headline */}
@@ -77,12 +78,12 @@ export default function Hero() {
           <motion.div {...FADE(0.3)} style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.75rem", marginBottom: "2rem" }}>
             <Link
               href="/dashboard"
+              className="btn-primary"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.5rem",
                 padding: "0.8rem 1.75rem", borderRadius: "0.75rem",
-                background: "#2563eb", color: "white", fontWeight: 600, fontSize: "0.9375rem",
-                textDecoration: "none", boxShadow: "0 8px 32px rgba(37,99,235,0.4)",
-                transition: "background 0.2s, transform 0.2s",
+                background: "#4f46e5", color: "white", fontWeight: 600, fontSize: "0.9375rem",
+                textDecoration: "none", boxShadow: "0 8px 32px rgba(79,70,229,0.45)",
               }}
             >
               Start for free
@@ -90,12 +91,13 @@ export default function Hero() {
             </Link>
             <Link
               href="/dashboard"
+              className="btn-secondary"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.5rem",
                 padding: "0.8rem 1.75rem", borderRadius: "0.75rem",
                 background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
                 color: "rgba(255,255,255,0.8)", fontWeight: 500, fontSize: "0.9375rem",
-                textDecoration: "none", transition: "background 0.2s",
+                textDecoration: "none",
               }}
             >
               <Play style={{ width: "0.875rem", height: "0.875rem", fill: "currentColor", opacity: 0.8 }} />
@@ -109,18 +111,17 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* ── DASHBOARD MOCKUP ───────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 48, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 64, scale: 0.94, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           style={{ position: "relative", maxWidth: "72rem", margin: "0 auto" }}
         >
           {/* Glow beneath */}
           <div aria-hidden="true" style={{
             position: "absolute", bottom: "-3rem", left: "50%", transform: "translateX(-50%)",
             width: "70%", height: "5rem",
-            background: "rgba(59,130,246,0.18)", filter: "blur(40px)", borderRadius: "9999px",
+            background: "rgba(99,102,241,0.2)", filter: "blur(40px)", borderRadius: "9999px",
             pointerEvents: "none",
           }} />
 
@@ -151,21 +152,23 @@ export default function Hero() {
                 </div>
               </div>
               <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
-                <div style={{ padding: "0.25rem 0.625rem", borderRadius: "0.375rem", background: "rgba(37,99,235,0.2)", border: "1px solid rgba(96,165,250,0.2)", fontSize: "0.6rem", fontWeight: 600, color: "#60a5fa", letterSpacing: "0.05em" }}>
+                <div style={{ padding: "0.25rem 0.625rem", borderRadius: "0.375rem", background: "rgba(79,70,229,0.2)", border: "1px solid rgba(129,140,248,0.25)", fontSize: "0.6rem", fontWeight: 600, color: "#818cf8", letterSpacing: "0.05em" }}>
                   SOC 2 Verified
                 </div>
               </div>
             </div>
 
             {/* App interior */}
-            <div style={{ background: "#060b18", display: "flex", minHeight: "360px" }}>
+            <div style={{ background: "#05080f", display: "flex", minHeight: "360px" }}>
 
               {/* Sidebar */}
               <div style={{ width: "52px", background: "#0a1020", borderRight: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", alignItems: "center", padding: "1rem 0", gap: "0.5rem", flexShrink: 0 }}>
-                <div style={{ width: "28px", height: "28px", borderRadius: "0.5rem", background: "linear-gradient(135deg,#3b82f6,#7c3aed)", marginBottom: "1.25rem" }} />
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <VantageLogo variant="mark" size={22} />
+                </div>
                 {[0,1,2,3,4].map(i => (
-                  <div key={i} style={{ width: "32px", height: "32px", borderRadius: "0.5rem", background: i === 0 ? "rgba(59,130,246,0.2)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <div style={{ width: "14px", height: "14px", borderRadius: "3px", background: i === 0 ? "#60a5fa" : "rgba(255,255,255,0.15)" }} />
+                  <div key={i} style={{ width: "32px", height: "32px", borderRadius: "0.5rem", background: i === 0 ? "rgba(99,102,241,0.2)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: "14px", height: "14px", borderRadius: "3px", background: i === 0 ? "#818cf8" : "rgba(255,255,255,0.15)" }} />
                   </div>
                 ))}
               </div>
@@ -181,7 +184,7 @@ export default function Hero() {
                   </div>
                   <div style={{ display: "flex", gap: "0.375rem" }}>
                     <div style={{ padding: "0.25rem 0.625rem", borderRadius: "0.375rem", background: "#111e35", border: "1px solid rgba(255,255,255,0.06)", fontSize: "0.6rem", color: "#8899bb" }}>Export</div>
-                    <div style={{ padding: "0.25rem 0.625rem", borderRadius: "0.375rem", background: "#2563eb", fontSize: "0.6rem", color: "white", fontWeight: 600 }}>+ New Report</div>
+                    <div style={{ padding: "0.25rem 0.625rem", borderRadius: "0.375rem", background: "#4f46e5", fontSize: "0.6rem", color: "white", fontWeight: 600 }}>+ New Report</div>
                   </div>
                 </div>
 
@@ -211,7 +214,7 @@ export default function Hero() {
                       <span style={{ fontSize: "0.6875rem", fontWeight: 600, color: "white" }}>Revenue Over Time</span>
                       <div style={{ display: "flex", gap: "0.25rem" }}>
                         {["1W","1M","3M","1Y"].map((t, i) => (
-                          <button key={t} style={{ fontSize: "0.55rem", padding: "0.15rem 0.4rem", borderRadius: "0.25rem", border: "none", cursor: "pointer", background: i === 3 ? "#2563eb" : "transparent", color: i === 3 ? "white" : "#4a5a7a" }}>{t}</button>
+                          <button key={t} style={{ fontSize: "0.55rem", padding: "0.15rem 0.4rem", borderRadius: "0.25rem", border: "none", cursor: "pointer", background: i === 3 ? "#4f46e5" : "transparent", color: i === 3 ? "white" : "#4a5a7a" }}>{t}</button>
                         ))}
                       </div>
                     </div>
@@ -223,8 +226,8 @@ export default function Hero() {
                     <div style={{ fontSize: "0.6875rem", fontWeight: 600, color: "white", marginBottom: "0.75rem" }}>Top Segments</div>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
                       {[
-                        { name: "Enterprise", pct: 42, color: "#3b82f6" },
-                        { name: "Mid-Market", pct: 31, color: "#7c3aed" },
+                        { name: "Enterprise", pct: 42, color: "#6366f1" },
+                        { name: "Mid-Market", pct: 31, color: "#8b5cf6" },
                         { name: "Startup", pct: 18, color: "#06b6d4" },
                         { name: "Other", pct: 9, color: "#475569" },
                       ].map((seg) => (
@@ -246,7 +249,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* ── TRUST BADGES ──────────────────────────────── */}
         <motion.div
           {...FADE(0.7)}
           style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1.5rem", marginTop: "3rem" }}
@@ -257,8 +259,8 @@ export default function Hero() {
             { icon: Zap, label: "200+ Integrations", sub: "No code required" },
           ].map(({ icon: Icon, label, sub }) => (
             <div key={label} style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-              <div style={{ width: "32px", height: "32px", borderRadius: "0.5rem", background: "rgba(59,130,246,0.1)", border: "1px solid rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Icon style={{ width: "0.875rem", height: "0.875rem", color: "#60a5fa" }} strokeWidth={1.8} />
+              <div style={{ width: "32px", height: "32px", borderRadius: "0.5rem", background: "rgba(99,102,241,0.1)", border: "1px solid rgba(129,140,248,0.18)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Icon style={{ width: "0.875rem", height: "0.875rem", color: "#818cf8" }} strokeWidth={1.8} />
               </div>
               <div>
                 <div style={{ fontSize: "0.8125rem", fontWeight: 600, color: "white", lineHeight: 1.2 }}>{label}</div>
@@ -292,14 +294,14 @@ function RevenueAreaChart() {
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "80px", display: "block" }} preserveAspectRatio="none">
         <defs>
           <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d={areaPath} fill="url(#areaGrad)" />
-        <path d={linePath} fill="none" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d={linePath} fill="none" stroke="#818cf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         {/* Last point dot */}
-        <circle cx={xs[xs.length - 1]} cy={ys[ys.length - 1]} r="3" fill="#60a5fa" />
+        <circle cx={xs[xs.length - 1]} cy={ys[ys.length - 1]} r="3" fill="#10d9a8" />
       </svg>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.25rem" }}>
         {months.map((m, i) => (

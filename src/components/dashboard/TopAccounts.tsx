@@ -2,65 +2,20 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, TrendingDown } from "lucide-react";
-import clsx from "clsx";
 
 const accounts = [
-  {
-    name: "Meridian Corp",
-    plan: "Enterprise",
-    mrr: "$48,200",
-    health: 98,
-    healthLabel: "Healthy",
-    delta: "+12%",
-    up: true,
-    avatar: "MC",
-    avatarColor: "bg-blue-600",
-  },
-  {
-    name: "Stratford Capital",
-    plan: "Enterprise",
-    mrr: "$32,500",
-    health: 94,
-    healthLabel: "Healthy",
-    delta: "+5%",
-    up: true,
-    avatar: "SC",
-    avatarColor: "bg-violet-600",
-  },
-  {
-    name: "Velos Defense",
-    plan: "Enterprise",
-    mrr: "$28,900",
-    health: 72,
-    healthLabel: "At Risk",
-    delta: "-3%",
-    up: false,
-    avatar: "VD",
-    avatarColor: "bg-slate-600",
-  },
-  {
-    name: "Arclight Systems",
-    plan: "Growth",
-    mrr: "$14,700",
-    health: 89,
-    healthLabel: "Healthy",
-    delta: "+22%",
-    up: true,
-    avatar: "AS",
-    avatarColor: "bg-cyan-600",
-  },
-  {
-    name: "Ironclad Labs",
-    plan: "Growth",
-    mrr: "$11,200",
-    health: 85,
-    healthLabel: "Healthy",
-    delta: "+8%",
-    up: true,
-    avatar: "IL",
-    avatarColor: "bg-pink-600",
-  },
+  { name: "Meridian Corp",    plan: "Enterprise", mrr: "$48,200", health: 98, healthLabel: "Healthy",  delta: "+12%", up: true,  avatarBg: "#4f46e5" },
+  { name: "Stratford Capital",plan: "Enterprise", mrr: "$32,500", health: 94, healthLabel: "Healthy",  delta: "+5%",  up: true,  avatarBg: "#7c3aed" },
+  { name: "Velos Defense",    plan: "Enterprise", mrr: "$28,900", health: 72, healthLabel: "At Risk",   delta: "-3%",  up: false, avatarBg: "#475569" },
+  { name: "Arclight Systems", plan: "Growth",     mrr: "$14,700", health: 89, healthLabel: "Healthy",  delta: "+22%", up: true,  avatarBg: "#0891b2" },
+  { name: "Ironclad Labs",    plan: "Growth",     mrr: "$11,200", health: 85, healthLabel: "Healthy",  delta: "+8%",  up: true,  avatarBg: "#db2777" },
 ];
+
+function healthColor(h: number) {
+  if (h >= 90) return "#10b981";
+  if (h >= 75) return "#f59e0b";
+  return "#ef4444";
+}
 
 export default function TopAccounts() {
   return (
@@ -68,79 +23,66 @@ export default function TopAccounts() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.4 }}
-      className="bg-[#0d1526] border border-white/[0.06] rounded-2xl p-5"
+      style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", borderRadius: "1rem", padding: "1.25rem" }}
     >
-      <div className="flex items-center justify-between mb-5">
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
         <div>
-          <h2 className="text-sm font-semibold text-white">Top Accounts</h2>
-          <p className="text-xs text-[#4a5a7a] mt-0.5">By monthly revenue</p>
+          <h2 style={{ fontSize: "0.875rem", fontWeight: 600, color: "white" }}>Top Accounts</h2>
+          <p style={{ fontSize: "0.75rem", color: "#4a5a7a", marginTop: "0.125rem" }}>By monthly revenue</p>
         </div>
-        <button className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+        <button style={{ fontSize: "0.75rem", color: "#818cf8", background: "transparent", border: "none", cursor: "pointer" }}>
           View all
         </button>
       </div>
 
-      <div className="overflow-x-auto -mx-1" role="region" aria-label="Top accounts table">
-        <table className="w-full min-w-[480px]" aria-label="Top customer accounts">
+      <div style={{ overflowX: "auto" }} role="region" aria-label="Top accounts table">
+        <table style={{ width: "100%", minWidth: "480px", borderCollapse: "collapse" }} aria-label="Top customer accounts">
           <thead>
             <tr>
-              {["Account", "Plan", "MRR", "Health", "Trend"].map((col) => (
+              {["Account", "Plan", "MRR", "Health", "Trend"].map((col, ci) => (
                 <th
                   key={col}
                   scope="col"
-                  className="pb-3 text-left text-xs font-medium text-[#4a5a7a] uppercase tracking-wider first:pl-1 last:text-right"
+                  style={{ paddingBottom: "0.75rem", textAlign: ci === 4 ? "right" : "left", fontSize: "0.7rem", fontWeight: 500, color: "#4a5a7a", textTransform: "uppercase", letterSpacing: "0.06em" }}
                 >
                   {col}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/[0.04]">
+          <tbody>
             {accounts.map((account, i) => (
               <motion.tr
                 key={account.name}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 + i * 0.05 }}
-                className="hover:bg-white/[0.02] transition-colors"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
               >
-                <td className="py-3 pl-1">
-                  <div className="flex items-center gap-2.5">
+                <td style={{ padding: "0.75rem 0" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
                     <div
-                      className={clsx(
-                        "w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-white flex-shrink-0",
-                        account.avatarColor
-                      )}
+                      style={{ width: "28px", height: "28px", borderRadius: "0.5rem", background: account.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.6875rem", fontWeight: 700, color: "white", flexShrink: 0 }}
                       aria-hidden="true"
                     >
-                      {account.avatar}
+                      {account.name.split(" ").map(w => w[0]).join("").slice(0, 2)}
                     </div>
-                    <span className="text-xs font-medium text-white">
-                      {account.name}
-                    </span>
+                    <span style={{ fontSize: "0.8125rem", fontWeight: 500, color: "white" }}>{account.name}</span>
                   </div>
                 </td>
-                <td className="py-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-white/[0.06] text-xs text-[#8899bb]">
+                <td style={{ padding: "0.75rem 0" }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "0.15rem 0.5rem", borderRadius: "0.375rem", background: "rgba(255,255,255,0.06)", fontSize: "0.75rem", color: "#8899bb" }}>
                     {account.plan}
                   </span>
                 </td>
-                <td className="py-3 text-xs font-semibold text-white">
+                <td style={{ padding: "0.75rem 0", fontSize: "0.8125rem", fontWeight: 600, color: "white" }}>
                   {account.mrr}
                 </td>
-                <td className="py-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-16 h-1.5 bg-white/[0.05] rounded-full overflow-hidden">
+                <td style={{ padding: "0.75rem 0" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <div style={{ width: "64px", height: "4px", background: "rgba(255,255,255,0.05)", borderRadius: "9999px", overflow: "hidden" }}>
                       <div
-                        className={clsx(
-                          "h-full rounded-full",
-                          account.health >= 90
-                            ? "bg-green-500"
-                            : account.health >= 75
-                            ? "bg-amber-500"
-                            : "bg-red-500"
-                        )}
-                        style={{ width: `${account.health}%` }}
+                        style={{ height: "100%", width: `${account.health}%`, background: healthColor(account.health), borderRadius: "9999px" }}
                         role="progressbar"
                         aria-valuenow={account.health}
                         aria-valuemin={0}
@@ -148,32 +90,15 @@ export default function TopAccounts() {
                         aria-label={`${account.healthLabel} — ${account.health}%`}
                       />
                     </div>
-                    <span
-                      className={clsx(
-                        "text-xs",
-                        account.health >= 90
-                          ? "text-green-400"
-                          : account.health >= 75
-                          ? "text-amber-400"
-                          : "text-red-400"
-                      )}
-                    >
-                      {account.healthLabel}
-                    </span>
+                    <span style={{ fontSize: "0.75rem", color: healthColor(account.health) }}>{account.healthLabel}</span>
                   </div>
                 </td>
-                <td className="py-3 text-right">
-                  <div
-                    className={clsx(
-                      "inline-flex items-center gap-1 text-xs font-medium",
-                      account.up ? "text-green-400" : "text-red-400"
-                    )}
-                  >
-                    {account.up ? (
-                      <TrendingUp className="w-3 h-3" />
-                    ) : (
-                      <TrendingDown className="w-3 h-3" />
-                    )}
+                <td style={{ padding: "0.75rem 0", textAlign: "right" }}>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", fontSize: "0.8125rem", fontWeight: 500, color: account.up ? "#10b981" : "#ef4444" }}>
+                    {account.up
+                      ? <TrendingUp style={{ width: "0.75rem", height: "0.75rem" }} />
+                      : <TrendingDown style={{ width: "0.75rem", height: "0.75rem" }} />
+                    }
                     {account.delta}
                   </div>
                 </td>

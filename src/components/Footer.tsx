@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, Twitter, Linkedin, Github } from "lucide-react";
+import { Twitter, Linkedin, Github } from "lucide-react";
+import VantageLogo from "@/components/VantageLogo";
 
 const footerLinks = {
   Product: [
@@ -32,36 +33,36 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer
-      className="relative border-t border-white/[0.05] bg-[#060b18]"
+      style={{ position: "relative", borderTop: "1px solid rgba(255,255,255,0.05)", background: "#05080f" }}
       role="contentinfo"
     >
-      <div className="section-outer" style={{ paddingTop: '3.5rem', paddingBottom: '3.5rem' }}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+      <div className="section-outer" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+        <div className="footer-grid">
           {/* Brand */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <Zap className="w-4 h-4 text-white" strokeWidth={2.5} />
-              </div>
-              <span className="font-semibold text-lg text-white">Vantage</span>
+          <div>
+            <Link href="/" style={{ display: "inline-block", marginBottom: "1rem", textDecoration: "none" }}>
+              <VantageLogo size={26} />
             </Link>
-            <p className="text-sm text-[#4a5a7a] leading-relaxed max-w-xs">
+            <p style={{ fontSize: "0.875rem", color: "#4a5a7a", lineHeight: 1.7, maxWidth: "18rem" }}>
               Operations intelligence for enterprise teams. Real-time analytics,
               automated reporting, and AI-powered insights.
             </p>
-            <div className="flex gap-3 mt-5">
+            <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.25rem" }}>
               {[
-                { icon: Twitter, label: "Twitter" },
-                { icon: Linkedin, label: "LinkedIn" },
-                { icon: Github, label: "GitHub" },
-              ].map(({ icon: Icon, label }) => (
+                { icon: Twitter, label: "Twitter", href: "https://twitter.com/peytontouma" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/peyton-touma" },
+                { icon: Github, label: "GitHub — view source", href: "https://github.com/peytontouma" },
+              ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-8 h-8 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.06] flex items-center justify-center text-[#4a5a7a] hover:text-white transition-all"
+                  className="social-icon-btn"
+                  style={{ width: "32px", height: "32px", borderRadius: "0.5rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center", color: "#4a5a7a", textDecoration: "none" }}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon style={{ width: "0.875rem", height: "0.875rem" }} />
                 </a>
               ))}
             </div>
@@ -70,16 +71,13 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
+              <h3 style={{ fontSize: "0.7rem", fontWeight: 600, color: "white", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>
                 {category}
               </h3>
-              <ul className="space-y-3" role="list">
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.625rem" }} role="list">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[#4a5a7a] hover:text-white transition-colors"
-                    >
+                    <Link href={link.href} className="footer-link" style={{ fontSize: "0.875rem", color: "#4a5a7a", textDecoration: "none" }}>
                       {link.label}
                     </Link>
                   </li>
@@ -90,17 +88,27 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#4a5a7a]">
-            © {new Date().getFullYear()} Vantage Technologies, Inc. All rights
-            reserved.
-          </p>
-          <div className="flex gap-1">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <div style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.75rem", color: "#4a5a7a" }}>
+              © {new Date().getFullYear()} Vantage Technologies, Inc. All rights reserved.
+            </p>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", padding: "0.25rem 0.75rem", borderRadius: "9999px", background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", fontSize: "0.75rem", color: "#34d399" }}>
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#34d399", animation: "pulse 2s infinite", display: "inline-block" }} />
               All systems operational
             </span>
           </div>
+          <p style={{ fontSize: "0.7rem", color: "#2a3a5a" }}>
+            Made by{" "}
+            <a
+              href="https://github.com/peytontouma"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#4a5a7a", textDecoration: "none" }}
+            >
+              Peyton Touma
+            </a>
+          </p>
         </div>
       </div>
     </footer>

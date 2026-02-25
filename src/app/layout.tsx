@@ -13,22 +13,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vantage — Operations Intelligence Platform",
+  title: {
+    default: "Vantage — Operations Intelligence Platform",
+    template: "%s — Vantage",
+  },
   description:
     "Vantage gives enterprise teams real-time visibility into their operations. Track performance, automate reporting, and collaborate securely — all in one platform.",
   keywords: [
     "operations intelligence",
     "enterprise analytics",
     "SaaS dashboard",
-    "team performance",
-    "secure reporting",
+    "real-time analytics",
+    "automated reporting",
+    "anomaly detection",
+    "SOC 2 certified",
+    "team performance monitoring",
   ],
+  authors: [{ name: "Peyton Touma", url: "https://github.com/peytontouma" }],
+  creator: "Peyton Touma",
   openGraph: {
     title: "Vantage — Operations Intelligence Platform",
     description:
-      "Real-time operations intelligence for enterprise teams.",
+      "Real-time operations intelligence for enterprise teams. Analytics, automated reporting, AI-powered anomaly detection — in one secure platform.",
     type: "website",
+    siteName: "Vantage",
+    locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vantage — Operations Intelligence Platform",
+    description:
+      "Real-time operations intelligence for enterprise teams. Analytics, automated reporting, AI-powered anomaly detection.",
+    creator: "@peytontouma",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  themeColor: "#05080f",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -41,6 +65,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

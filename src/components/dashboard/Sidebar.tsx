@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
 import {
-  Zap,
   LayoutDashboard,
   BarChart3,
   Bell,
@@ -15,8 +13,8 @@ import {
   GitMerge,
   ChevronLeft,
   ChevronRight,
-  HelpCircle,
 } from "lucide-react";
+import VantageLogo from "@/components/VantageLogo";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Overview", href: "/dashboard" },
@@ -32,62 +30,74 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
 
+  const w = collapsed ? 64 : 228;
+
   return (
     <aside
-      className={clsx(
-        "hidden lg:flex flex-col h-screen sticky top-0 bg-[#060b18] border-r border-white/[0.06] transition-all duration-300 z-20",
-        collapsed ? "w-16" : "w-60"
-      )}
+      style={{
+        width: `${w}px`,
+        minWidth: `${w}px`,
+        height: "100vh",
+        display: "none",
+        flexDirection: "column",
+        background: "#05080f",
+        borderRight: "1px solid rgba(255,255,255,0.06)",
+        transition: "width 0.25s ease, min-width 0.25s ease",
+        position: "sticky",
+        top: 0,
+        zIndex: 20,
+        flexShrink: 0,
+      }}
+      className="sidebar-lg"
       aria-label="Sidebar navigation"
     >
       {/* Logo */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-white/[0.06] flex-shrink-0">
-        {!collapsed && (
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-              <Zap className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
-            </div>
-            <span className="font-semibold text-white text-sm">Vantage</span>
-          </Link>
-        )}
-        {collapsed && (
-          <div className="w-7 h-7 mx-auto rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-            <Zap className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
-          </div>
-        )}
+      <div style={{ height: "64px", display: "flex", alignItems: "center", justifyContent: collapsed ? "center" : "flex-start", padding: "0 1rem", borderBottom: "1px solid rgba(255,255,255,0.06)", flexShrink: 0 }}>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          {collapsed ? (
+            <VantageLogo variant="mark" size={24} />
+          ) : (
+            <VantageLogo size={24} />
+          )}
+        </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-4 px-2" aria-label="Main">
-        <ul className="space-y-1" role="list">
+      <nav style={{ flex: 1, overflowY: "auto", padding: "0.75rem 0.5rem" }} aria-label="Main">
+        <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "2px" }} role="list">
           {navItems.map((item) => {
             const active = pathname === item.href;
             return (
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className={clsx(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150",
-                    active
-                      ? "bg-blue-600/15 text-blue-400 border border-blue-500/20"
-                      : "text-[#4a5a7a] hover:text-[#8899bb] hover:bg-white/[0.04]",
-                    collapsed && "justify-center"
-                  )}
+                  className={active ? undefined : "sidebar-link"}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                    padding: "0.625rem 0.75rem",
+                    borderRadius: "0.75rem",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    background: active ? "rgba(99,102,241,0.12)" : "transparent",
+                    border: active ? "1px solid rgba(129,140,248,0.25)" : "1px solid transparent",
+                    color: active ? "#818cf8" : "#4a5a7a",
+                  }}
                   aria-current={active ? "page" : undefined}
                   title={collapsed ? item.label : undefined}
                 >
                   <item.icon
-                    className={clsx(
-                      "w-4.5 h-4.5 flex-shrink-0",
-                      active ? "text-blue-400" : ""
-                    )}
-                    style={{ width: "18px", height: "18px" }}
+                    style={{ width: "18px", height: "18px", flexShrink: 0, color: active ? "#818cf8" : "#4a5a7a" }}
+                    strokeWidth={active ? 2 : 1.7}
                   />
                   {!collapsed && (
                     <>
-                      <span className="flex-1">{item.label}</span>
+                      <span style={{ flex: 1 }}>{item.label}</span>
                       {item.badge && (
-                        <span className="flex items-center justify-center w-5 h-5 text-xs font-semibold bg-blue-600 text-white rounded-full">
+                        <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "20px", height: "20px", fontSize: "0.6875rem", fontWeight: 700, background: "#4f46e5", color: "white", borderRadius: "9999px" }}>
                           {item.badge}
                         </span>
                       )}
@@ -101,30 +111,30 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom */}
-      <div className="flex-shrink-0 border-t border-white/[0.06] p-2">
+      <div style={{ flexShrink: 0, borderTop: "1px solid rgba(255,255,255,0.06)", padding: "0.5rem" }}>
         {!collapsed && (
-          <div className="flex items-center gap-3 px-3 py-2.5 mb-1">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-xs font-semibold text-white flex-shrink-0">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.625rem 0.75rem", marginBottom: "0.25rem" }}>
+            <div style={{ width: "28px", height: "28px", borderRadius: "9999px", background: "linear-gradient(135deg, #4f46e5, #8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem", fontWeight: 700, color: "white", flexShrink: 0 }}>
               PT
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white truncate">
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ fontSize: "0.75rem", fontWeight: 500, color: "white", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 Peyton T.
               </p>
-              <p className="text-xs text-[#4a5a7a] truncate">Growth Plan</p>
+              <p style={{ fontSize: "0.7rem", color: "#4a5a7a", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Growth Plan</p>
             </div>
           </div>
         )}
         <button
           onClick={() => setCollapsed((v) => !v)}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs text-[#4a5a7a] hover:text-[#8899bb] hover:bg-white/[0.04] transition-all"
+          style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", padding: "0.5rem 0.75rem", borderRadius: "0.75rem", fontSize: "0.75rem", color: "#4a5a7a", background: "transparent", border: "none", cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {collapsed ? (
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight style={{ width: "1rem", height: "1rem" }} />
           ) : (
             <>
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft style={{ width: "1rem", height: "1rem" }} />
               <span>Collapse</span>
             </>
           )}
