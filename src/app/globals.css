@@ -23,6 +23,146 @@
   --green: #34d399;
 }
 
+/* light mode overrides */
+[data-theme="light"] {
+  --bg-base: #f0f4ff;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #e8eeff;
+  --bg-surface-3: #dce4ff;
+  --border: rgba(79, 70, 229, 0.12);
+  --border-hover: rgba(79, 70, 229, 0.24);
+  --text-primary: #0d1226;
+  --text-secondary: #3a4a6a;
+  --text-muted: #6b7a9b;
+  color-scheme: light;
+}
+
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(99,102,241,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139,92,246,0.04) 0%, transparent 60%);
+}
+
+/* headings — override hardcoded white */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: var(--text-primary) !important;
+}
+
+/* CTA banner stays dark regardless of theme — its own background is always dark */
+[data-theme="light"] .cta-banner-inner {
+  background: linear-gradient(135deg, #3730a3 0%, #1e1b4b 50%, #4c1d95 100%) !important;
+  border-color: rgba(139,92,246,0.25) !important;
+}
+[data-theme="light"] .cta-banner-inner h1,
+[data-theme="light"] .cta-banner-inner h2,
+[data-theme="light"] .cta-banner-inner h3,
+[data-theme="light"] .cta-banner-inner h4 {
+  color: white !important;
+}
+[data-theme="light"] .cta-view-pricing {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+[data-theme="light"] .cta-view-pricing:hover {
+  background: rgba(255,255,255,0.18) !important;
+  color: white !important;
+}
+
+/* pricing featured card gradient in light mode */
+[data-theme="light"] .pricing-card-featured {
+  background: linear-gradient(to bottom, rgba(79,70,229,0.08), var(--bg-surface)) !important;
+  box-shadow: 0 20px 60px rgba(79,70,229,0.12) !important;
+}
+
+/* card surfaces */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .card-interactive {
+  background: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+}
+[data-theme="light"] .card-interactive:hover {
+  border-color: rgba(79,70,229,0.25) !important;
+  box-shadow: 0 8px 24px rgba(79,70,229,0.1) !important;
+}
+
+/* layout helpers */
+[data-theme="light"] .stats-grid {
+  background: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.05) !important;
+}
+[data-theme="light"] .section-divider {
+  background: linear-gradient(to right, transparent, rgba(79,70,229,0.15) 30%, rgba(79,70,229,0.15) 70%, transparent) !important;
+}
+
+/* btn-secondary — becomes indigo-tinted instead of white-tinted */
+[data-theme="light"] .btn-secondary {
+  background: rgba(79,70,229,0.07) !important;
+  border-color: rgba(79,70,229,0.22) !important;
+  color: #4f46e5 !important;
+}
+[data-theme="light"] .btn-secondary:hover {
+  background: rgba(79,70,229,0.13) !important;
+  border-color: rgba(79,70,229,0.35) !important;
+  color: #3730a3 !important;
+}
+
+/* btn-ghost */
+[data-theme="light"] .btn-ghost {
+  color: var(--text-secondary) !important;
+}
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(0,0,0,0.05) !important;
+  color: var(--text-primary) !important;
+}
+
+/* nav + sidebar hover: fix white-on-white */
+[data-theme="light"] .nav-link-item:hover {
+  color: var(--text-primary) !important;
+  background: rgba(79,70,229,0.07) !important;
+}
+[data-theme="light"] .sidebar-link:hover {
+  background: rgba(79,70,229,0.06) !important;
+  color: var(--text-primary) !important;
+}
+[data-theme="light"] .footer-link:hover {
+  color: #4f46e5 !important;
+}
+
+/* mini-stats values */
+[data-theme="light"] .mini-stats-grid p {
+  color: var(--text-primary) !important;
+}
+
+/* testimonial cards */
+[data-theme="light"] .testimonial-masonry blockquote {
+  background: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+[data-theme="light"] .testimonial-masonry blockquote p {
+  color: var(--text-secondary) !important;
+}
+
+/* icon buttons */
+[data-theme="light"] .icon-btn:hover {
+  background: rgba(0,0,0,0.06) !important;
+  color: var(--text-primary) !important;
+}
+[data-theme="light"] .social-icon-btn:hover {
+  background: rgba(79,70,229,0.08) !important;
+  color: #4f46e5 !important;
+  border-color: rgba(79,70,229,0.2) !important;
+}
+
+/* scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg-base); }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--bg-surface-3); }
+
 * {
   box-sizing: border-box;
   margin: 0;

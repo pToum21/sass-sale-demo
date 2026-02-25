@@ -11,8 +11,8 @@ const footerLinks = {
     { label: "Dashboard", href: "/dashboard" },
   ],
   Company: [
-    { label: "About", href: "#" },
-    { label: "Blog", href: "#" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
     { label: "Careers", href: "#" },
     { label: "Press", href: "#" },
   ],
@@ -33,7 +33,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer
-      style={{ position: "relative", borderTop: "1px solid rgba(255,255,255,0.05)", background: "#05080f" }}
+      style={{ position: "relative", borderTop: "1px solid var(--border)", background: "var(--bg-base)" }}
       role="contentinfo"
     >
       <div className="section-outer" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>

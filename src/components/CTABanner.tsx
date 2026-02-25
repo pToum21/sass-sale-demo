@@ -9,15 +9,18 @@ export default function CTABanner() {
     <section className="page-section" aria-labelledby="cta-heading">
       <div className="section-outer">
         <ScrollReveal animation="scaleUp">
-          <div style={{
-            position: "relative",
-            borderRadius: "1.5rem",
-            overflow: "hidden",
-            background: "linear-gradient(135deg, rgba(49,46,129,0.35) 0%, #0b1120 50%, rgba(88,28,135,0.25) 100%)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            padding: "4rem 3rem",
-            textAlign: "center",
-          }}>
+          <div
+            className="cta-banner-inner"
+            style={{
+              position: "relative",
+              borderRadius: "1.5rem",
+              overflow: "hidden",
+              background: "linear-gradient(135deg, rgba(49,46,129,0.35) 0%, #0b1120 50%, rgba(88,28,135,0.25) 100%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              padding: "4rem 3rem",
+              textAlign: "center",
+            }}
+          >
             {/* Glow orbs */}
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
               <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "600px", height: "300px", background: "rgba(99,102,241,0.13)", borderRadius: "50%", filter: "blur(80px)" }} />
@@ -55,12 +58,11 @@ export default function CTABanner() {
                 </Link>
                 <Link
                   href="#pricing"
-                  className="btn-secondary"
+                  className="btn-secondary cta-view-pricing"
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "0.5rem",
                     padding: "0.875rem 2rem", fontSize: "0.9375rem", fontWeight: 500,
-                    color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.07)",
-                    border: "1px solid rgba(255,255,255,0.1)", borderRadius: "0.75rem",
+                    borderRadius: "0.75rem",
                     textDecoration: "none",
                   }}
                 >

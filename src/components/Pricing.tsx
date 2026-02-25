@@ -107,8 +107,8 @@ export default function Pricing() {
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.2s",
-                background: !annual ? "white" : "transparent",
-                color: !annual ? "#060b18" : "#8899bb",
+                background: !annual ? "var(--text-primary)" : "transparent",
+                color: !annual ? "var(--bg-surface)" : "var(--text-muted)",
               }}
               aria-pressed={!annual}
             >
@@ -127,8 +127,8 @@ export default function Pricing() {
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.2s",
-                background: annual ? "white" : "transparent",
-                color: annual ? "#060b18" : "#8899bb",
+                background: annual ? "var(--text-primary)" : "transparent",
+                color: annual ? "var(--bg-surface)" : "var(--text-muted)",
               }}
               aria-pressed={annual}
             >
@@ -145,6 +145,7 @@ export default function Pricing() {
           {plans.map((plan, i) => (
             <div
               key={plan.name}
+              className={plan.featured ? "pricing-card-featured" : "pricing-card"}
               style={{
                 position: "relative",
                 display: "flex",
@@ -183,22 +184,22 @@ export default function Pricing() {
               )}
 
               <div style={{ marginBottom: "1.5rem" }}>
-                <h3 style={{ fontSize: "1rem", fontWeight: 600, color: "white", marginBottom: "0.25rem" }}>
+                <h3 style={{ fontSize: "1rem", fontWeight: 600, color: "var(--text-primary)", marginBottom: "0.25rem" }}>
                   {plan.name}
                 </h3>
-                <p style={{ fontSize: "0.875rem", color: "#8899bb" }}>{plan.description}</p>
+                <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>{plan.description}</p>
               </div>
 
               <div style={{ marginBottom: "1.5rem" }}>
                 {plan.monthlyPrice ? (
                   <div style={{ display: "flex", alignItems: "flex-end", gap: "0.25rem" }}>
-                    <span style={{ fontSize: "2.5rem", fontWeight: 700, color: "white", lineHeight: 1 }}>
+                    <span style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--text-primary)", lineHeight: 1 }}>
                       ${annual ? plan.yearlyPrice : plan.monthlyPrice}
                     </span>
-                    <span style={{ color: "#8899bb", fontSize: "0.875rem", paddingBottom: "0.25rem" }}>/mo</span>
+                    <span style={{ color: "var(--text-secondary)", fontSize: "0.875rem", paddingBottom: "0.25rem" }}>/mo</span>
                   </div>
                 ) : (
-                  <div style={{ fontSize: "2rem", fontWeight: 700, color: "white" }}>Custom</div>
+                  <div style={{ fontSize: "2rem", fontWeight: 700, color: "var(--text-primary)" }}>Custom</div>
                 )}
                 {plan.monthlyPrice && (
                   <p style={{ fontSize: "0.75rem", color: "#4a5a7a", marginTop: "0.25rem" }}>
@@ -219,9 +220,6 @@ export default function Pricing() {
                   borderRadius: "0.75rem",
                   fontSize: "0.875rem",
                   fontWeight: 600,
-                  color: "white",
-                  background: plan.featured ? "#4f46e5" : "rgba(255,255,255,0.08)",
-                  border: plan.featured ? "none" : "1px solid rgba(255,255,255,0.1)",
                   marginBottom: "2rem",
                   textDecoration: "none",
                 }}
@@ -235,7 +233,7 @@ export default function Pricing() {
                     <Check
                       style={{ width: "1rem", height: "1rem", marginTop: "0.1rem", flexShrink: 0, color: plan.featured ? "#818cf8" : "#10d9a8" }}
                     />
-                    <span style={{ color: "#8899bb" }}>{feature}</span>
+                    <span style={{ color: "var(--text-secondary)" }}>{feature}</span>
                   </li>
                 ))}
               </ul>

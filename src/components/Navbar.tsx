@@ -5,23 +5,34 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import VantageLogo from "@/components/VantageLogo";
+import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/context/ThemeContext";
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Customers", href: "#testimonials" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const scrolledBg = theme === "light"
+    ? "rgba(240,244,255,0.92)"
+    : "rgba(6,11,24,0.92)";
+
+  const scrolledBorder = theme === "light"
+    ? "1px solid rgba(79,70,229,0.12)"
+    : "1px solid rgba(255,255,255,0.06)";
 
   return (
     <header
@@ -32,9 +43,9 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "background 0.3s, border-color 0.3s",
-        background: scrolled ? "rgba(6,11,24,0.92)" : "transparent",
+        background: scrolled ? scrolledBg : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+        borderBottom: scrolled ? scrolledBorder : "1px solid transparent",
       }}
       role="banner"
     >
@@ -64,8 +75,9 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="show-desktop" style={{ alignItems: "center", gap: "0.75rem" }}>
-          <Link href="/dashboard" style={{ fontSize: "0.875rem", color: "#8899bb", textDecoration: "none", transition: "color 0.15s" }}>
+        <div className="show-desktop" style={{ alignItems: "center", gap: "0.5rem" }}>
+          <ThemeToggle />
+          <Link href="/dashboard" style={{ fontSize: "0.875rem", color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.15s", padding: "0.5rem 0.75rem" }}>
             Sign in
           </Link>
           <Link
@@ -78,16 +90,18 @@ export default function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="hide-desktop"
+        <div className="hide-desktop" style={{ alignItems: "center", gap: "0.25rem" }}>
+          <ThemeToggle />
+          <button
           style={{ padding: "0.5rem", borderRadius: "0.5rem", color: "#8899bb", background: "transparent", border: "none", cursor: "pointer", alignItems: "center", justifyContent: "center" }}
           onClick={() => setMobileOpen((v) => !v)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X style={{ width: "1.25rem", height: "1.25rem" }} /> : <Menu style={{ width: "1.25rem", height: "1.25rem" }} />}
-        </button>
+          >
+            {mobileOpen ? <X style={{ width: "1.25rem", height: "1.25rem" }} /> : <Menu style={{ width: "1.25rem", height: "1.25rem" }} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -99,7 +113,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            style={{ overflow: "hidden", background: "rgba(6,11,24,0.97)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ overflow: "hidden", background: theme === "light" ? "rgba(240,244,255,0.97)" : "rgba(6,11,24,0.97)", backdropFilter: "blur(20px)", borderBottom: `1px solid ${theme === "light" ? "rgba(79,70,229,0.12)" : "rgba(255,255,255,0.06)"}` }}
           >
             <ul style={{ listStyle: "none", padding: "0.5rem 1rem 1rem", display: "flex", flexDirection: "column", gap: "0.25rem" }} role="list">
               {navLinks.map((link) => (

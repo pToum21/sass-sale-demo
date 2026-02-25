@@ -58,7 +58,7 @@ export default function VantageLogo({
       style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", ...style }}
     >
       {mark}
-      <span style={{ fontWeight: 700, fontSize: `${fontSize}px`, letterSpacing: "-0.025em", color: "white", lineHeight: 1 }}>
+      <span style={{ fontWeight: 700, fontSize: `${fontSize}px`, letterSpacing: "-0.025em", color: "var(--text-primary)", lineHeight: 1 }}>
         Vantage
       </span>
     </div>
